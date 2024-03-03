@@ -3,15 +3,13 @@ var app=express()
 var BodyParser=require("body-parser")
 var mongoose=require("mongoose")
 
-//app.use(BodyParser.json())
+
 app.use(express.static('public'))
-//app.use(BodyParser.urlencoded({extended:true}))
 app.use(express.json());
 app.use(express.urlencoded({ extended: true }));
 
 
 //Connecting database
-//mongoose.connect('mongodb://localhost:27017/Database')
 mongoose.connect('mongodb://localhost:27017/Database', { useNewUrlParser: true, useUnifiedTopology: true });
 
 var database=mongoose.connection
@@ -21,7 +19,6 @@ database.once('open',()=>console.log("Connected to database"))
 app.post("/sign_up",(req,res)=>{
     
     //User Input
-
     var name=req.body.names
     var age=req.body.age
     var email=req.body.email
@@ -37,7 +34,6 @@ app.post("/sign_up",(req,res)=>{
         "mobile":mobile,
         "gender":gender,
         "password":password,
-
     }
 
     database.collection('users').insertOne(data,(err,collection)=>{
@@ -55,10 +51,8 @@ app.post("/sign_up",(req,res)=>{
 })
 
 
-app.get("/",(req,res)=>{
-    //res.set({"Allow access and origin":"*"}) 
+app.get("/",(req,res)=>{ 
     res.setHeader("Access-Control-Allow-Origin", "*");
-//return res.redirect('index.html')}
 res.sendFile(__dirname + '/index.html');}
 ).listen(3000);//As local host used
 console.log("Listening to port");
