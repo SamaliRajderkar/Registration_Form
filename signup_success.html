@@ -4,26 +4,33 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Registration Successful</title>
-
-    <link rel="stylesheet"  href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css"  integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg320mUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u"  crossorigin="anonymous">
-
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
     <link rel="stylesheet" type="text/css" href="style.css">
 </head>
 <body>
-    <br>
-    <br>
-    <br>
     <div class="container">
         <div class="row">
-            <div class="col-mod-3">
-
-            </div>
-
-            <div class="col-mod-6 main">
+            <div class="col-md-3"></div>
+            <div class="col-md-6 main">
                 <h1>Registration Successful</h1>
-
+                <p><strong>Name:</strong> <span id="displayName"></span></p>
+                <p><strong>Age:</strong> <span id="displayAge"></span></p>
+                <p><strong>Email:</strong> <span id="displayEmail"></span></p>
+                <p><strong>Mobile:</strong> <span id="displayMobile"></span></p>
+                <p><strong>Gender:</strong> <span id="displayGender"></span></p>
             </div>
         </div>
     </div>
+
+    <script>
+        let userData = JSON.parse(localStorage.getItem("userData"));
+        if (userData) {
+            document.getElementById("displayName").textContent = userData.name;
+            document.getElementById("displayAge").textContent = userData.age;
+            document.getElementById("displayEmail").textContent = userData.email;
+            document.getElementById("displayMobile").textContent = userData.mobile;
+            document.getElementById("displayGender").textContent = userData.gender;
+        }
+    </script>
 </body>
 </html>
